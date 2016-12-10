@@ -8,5 +8,7 @@ WORKDIR /usr/src/app
 
 ADD requirements.txt .
 ADD requirements ./requirements
+ADD blog ./blog
+ADD test ./test
 
 RUN pip install --no-cache-dir -r requirements.txt
