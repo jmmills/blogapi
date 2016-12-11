@@ -1,0 +1,26 @@
+sudo: required
+language: python
+python:
+- 3.5
+services:
+- docker
+env:
+  global:
+  - REPO=jmmills/blogapi
+  - COMMIT=${TRAVIS_COMMIT::8}
+  - secure: bmy5YHvaj4Zh6Kn53JingKxzEhep8GXAYMJLkr7Z4lVXt4T+PmtbudBmdvO/bIt4aXa2ZKkAjQ+xSP/hXgvovYXGxdZgOBlzvhXhDPHXRqHSUeD73Fk2m4LIFXxNe87z7pxfk0utP9JkqBuDN2VflL4mHc4/5+OOx/Uvy5Q/M7TBKUcFq+HN3lLThlK0B9Qh3lvZh0M2T8Vyl+j7BxyoTS1grQLL8+U1irLa9B1OsdkH77QtzIEGndLxrjN2f9M7kXyZCc9umfhTs9xEsG488IvcDEjXL6m/emxVFLpIXAOzVPqs8riVSMWr9QRs/SSDSmpzREBcmHCp2myfPJi26RTFESXLYgjF6dV2s1DNAGUzC+mdXGUZl3QIhtTiWBNuNznP9n1OmxllXvsxJp0eZWNA/sqCnTXvF4ya5csbR5709sEviUdwZGPQHa2MwAvhWvJbxkPmhULARVRpawtSYRTapR0T0hN3S1pF/3wL/DJEsGE6CnWG9xBdV/LwNqR45A+dLV6HJB9lAwFylwdaaBNYRuzwI/xoj1ycvD9UH+iek+qMXNwMqwh3xMjxidC2f+bdc/JO3cchsDSdUkGkRuiQtFZOOz6c7aH7EkJM97Zua2hfiDHf/JoS70k+691KDnVAwG9kuAwzVIQdnUs3O+ypVCBGgi7YJsJxwIdd3Ow=
+  - secure: b0EBB6FIRVanSm4zi8+sFFVwgbC50rylo+S5DfNH9KFgmAawDZG8dSpxzZYc7ZX2QxYJrp6FvDObLBde9BNsSsJNPstpY9PzS+XlhP4xK7sEMTJAafsxUs0rM2iiYDVuHztBwBlJJfWMLC/6JRjlZ7WokJo78NxrZQANCZPIkeBnKKJjpSHqEPjBA/6HQP6CTTrH2rMY17Pztf+08eGOWFu0VD00bUP74T8TJVvCSJggiojA6SRD4wm17dmBDTkgrr66MCsxanTKUXp78a+M25NgJGBBxsdiCB6Pho8IWSKwVH+wKH9EGOwhB484shNlsGlxQcit/KHU9rs+uFtqvJicJaY2l+2gTFZxzJIXVhsCXh3X8CLpJhZX0JlGAVNBaa3/7Kz3u6SWIHwfi8G2YGHK64erDgOhdfLgYn3pBBCeEv55OwOc/o1oK6KvsaBbOzKtftmik+hQyShKYKrPkFoawxtLCI2P8TYaB6KD5WyaTVJIjn/Vd0LIQGPxjdf8Caw3mJv8BI5JDrtqp3GcLRQjvOjf9BVEdD8zSTD79ZdhjBaGTwhEe6EqezK32TQR1wDDNgprBD0P8S8sO3XenIOmkb6v1Y+gn3FiXAdjmSpru8a3/ZRDlNh1QpMLPmzJXdR3z7XQtn7RD+bOlQgWhjX88trSnTNzXTu5Zc3Jgow=
+  - secure: o8rocyovSkfWcGHz0B0IXNmhhhTsqI48x2CKM1oKtJcJkUfC2nth4D87a32AkguiWsYQ9wPOcNuvKCtkMtUMEo+ral0jzqL+JPNowsfOP7S9DXV7hte/o2rG5uXOOqpM8l1j86RgOXDDNs5zlKZaZMgkY29wAc4cFNulb70Ng9eDmZ3easoQWyH7J5nh6Wesp7EnDyWro9jm9wjkcL5quMR9oQPhXc+OpORhpkRon4aQPFMO0OhNxtJtjp/4gGGI05+4kwYbokRhGAGhTVIExl4cwreML2lINY2s/5IHzjtUjzayRspum2F3NHh8UJl30F9HcVjZuScK9Oeismz5Yls4vDRtuGQRPfiiehRS9pNkhKjocOAhdErma743rCV2po2+Yrm21407HsjxMDU+ukrwN1RKMyLXQjXvAc4V76UMHIimo+QTWORSOkhW5NHeIy7/f7mPHmqZBekfmZZVn9gpG/Eu+SOJEIQtuS1zZHYi9WWHcYpDry0M581WFBnCIYkT8hrqrfRB6htfPFMd+buXjFHPBDjirQXjzn5oTXOHB5y0sMjwSPX8b4Dyt2pfGXhjHcBM6cgUIzj4RsuDKAGINnbpJw9zCmseF+7WPsx9Hm2ezlPOA942lwJJdwAJTuzkDx7H6dXRS8XPx+Vi+5OZ4SDUdfGpKuTxRhd8qiY=
+  - secure: hIyJbJtBCDJbG9ZNIuaOlbmk4TCcr49nb6urIglSeRErIL7XL5TktkUL54HzyHqvsPhHNNtXWijzwvHeMFhHVj/JlgG6lf3PZN4Ih1Z96M6nz8Xy8sFhh987U6WrO+bm0p7FjXvbcU9RPEklIGkLYxLMlsbhN4ILxS96KPiF25Ds72pU6sfEekZZOR5/ASww+2VdDRAdlGJdvB2Ty8GSRBtvOKkfeDlP2A0DBeiEqpgp90UJP8RhNzMREIp/9WPStDdWH+TjGhc9cESL5cJddE1UO6u5bSZrvN1s1sJ+wyL6nCR2LkElgtZZXQvTGdHII3FGhRgHXtyAG2DKvJOhWRoVO+AqPU+QQ02JcPC42WCCVDnod1yKLsvw6h/YdkvT8UiiDb/zk7g0/VYlR9a6OGz/IRiHri3lXSx/SxCZaGphOKPxqZIoh+4GsHKM0brXn2IIHS6Koc2PGEiFTicAT5Vj4wAjFYfq5ofRyfleFcTzx6+F66NpFIQuNmpfeEGszGCP62CC30imt//k9cuB44oxXSdHIjqpKbx9wdW4ywrmK6wHCGvjCTLa39eGzYL1EMjmgtyunSXmjBgYHB3H5ll3vXgfmlcGSglPoFZAq8t7dY6aTn9nGjwXieN1tLY9TCngdrwCNUqVr7UzOCIluLgXBAEhyVjJ0+11hkTK43g=
+install:
+- docker build -t $REPO:$COMMIT .
+script:
+- docker run -v ${TRAVIS_BUILD_DIR}:/source -e COVERAGE_FILE=/source/.coverage $REPO:$COMMIT nosetests --with-coverage --cover-package=blog/ --cover-branches --cover-erase
+after_success:
+- docker run -v ${TRAVIS_BUILD_DIR}:/usr/src/app -e COVERALLS_REPO_TOKEN=${COVERALLS_REPO_TOKEN} $REPO:$COMMIT sh -c "pip install coveralls && coveralls"
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+- docker tag $REPO:$COMMIT $REPO:$TAG
+- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+- docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+- docker push $REPO
+
