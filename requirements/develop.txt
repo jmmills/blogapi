@@ -1,4 +1,3 @@
 -r common.txt
 click
-docker-compose
 sqlacodegen
