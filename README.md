@@ -16,64 +16,70 @@ Deploy directly from docker hub
 
 * Get API Documentation
 
-      $ curl -s http://localhost:8000 
-     
-    ```javascript
-      {
-        "404": "The API call you tried to make was not defined. Here's a definition of the API to help you get going :)",
-        "documentation": {
-          "handlers": {
-            "/posts": {
-              "GET": {
-                "usage": "Lists blog posts",
-                "examples": [
-                  "http://localhost:8000/posts"
-                ],
-                "outputs": {
-                  "format": "JSON (Javascript Serialized Object Notation)",
-                  "content_type": "application/json"
-                }
+    ```
+    $ curl -s http://localhost:8000 
+    ```     
+    
+    ```json
+    {
+      "404": "The API call you tried to make was not defined. Here's a definition of the API to help you get going :)",
+      "documentation": {
+        "handlers": {
+          "/posts": {
+            "GET": {
+              "usage": "Lists blog posts",
+              "examples": [
+                "http://localhost:8000/posts"
+              ],
+              "outputs": {
+                "format": "JSON (Javascript Serialized Object Notation)",
+                "content_type": "application/json"
               }
-            },
-            "/post": {
-              "POST": {
-                "usage": "Adds a new blog post",
-                "outputs": {
-                  "format": "JSON (Javascript Serialized Object Notation)",
-                  "content_type": "application/json"
+            }
+          },
+          "/post": {
+            "POST": {
+              "usage": "Adds a new blog post",
+              "outputs": {
+                "format": "JSON (Javascript Serialized Object Notation)",
+                "content_type": "application/json"
+              },
+              "inputs": {
+                "post_title": {
+                  "type": "Basic text / string value"
                 },
-                "inputs": {
-                  "post_title": {
-                    "type": "Basic text / string value"
-                  },
-                  "post_body": {
-                    "type": "Basic text / string value"
-                  }
+                "post_body": {
+                  "type": "Basic text / string value"
                 }
               }
             }
           }
         }
       }
+    }
     ```
     
 * Add a blog post
 
-      $ curl -s -X POST 'http://localhost:8000/post?post_title=New&post_body=Post' 
-      
-    ```javascript
-      {
+    ```
+    $ curl -s -X POST 'http://localhost:8000/post?post_title=New&post_body=Post' 
+    ```
+    
+    ```json
+    {
         "post_id": 4,
         "title": "New",
         "body": "Post"
-      }
+    }
     ```
       
 * Get a list of posts
 
-      $ curl -s -X GET http://localhost:8000/posts 
+    ```
+    $ curl -s -X GET http://localhost:8000/posts 
+    ```
       
-    ```javascript
+    ```json
     [
       {
         "post_id": 1,
@@ -97,6 +103,7 @@ Deploy directly from docker hub
       }
     ]
     ```
+
 ## Service Configuration
 
 ### Environment Variables
