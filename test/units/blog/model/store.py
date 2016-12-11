@@ -3,7 +3,7 @@ from unittest import TestCase
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from blog.model.store import Post, metadata as PostMeta
+from blog.model.store import Post, PostMeta
 
 # Under special cases we may want overwrite what our connection URI is for
 # testing example use case: testing our API against a different RDBMS
@@ -144,3 +144,15 @@ class TestPostStore(TestCase):
         q = self.session.query(Post)
         assert q.count() == 9
         assert len(q.all()) == 9
+
+    def test_to_dict(self):
+        """
+        Tests Post().to_dict() method
+
+        :return:
+        """
+        self.create_test_records()
+
+        a = self.session.query(Post).first()
+        d = a.to_dict()
+        assert isinstance(d, dict)
