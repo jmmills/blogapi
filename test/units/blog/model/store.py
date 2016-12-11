@@ -12,10 +12,15 @@ BLOGAPI_LOG_SQL = True if getenv('BLOGAPI_LOG_SQL', 'false').lower() == 'true' e
 
 
 class TestPostStore(TestCase):
-
+    """
+    Tests our Post storage
+    """
     def setUp(self):
         """
-        This method initializes an in-memory SQLite database of our Posts SQLAlchemy model
+        Creates a test database before test methods run
+
+        This method initializes an in-memory SQLite database of our Posts() SQLAlchemy model
+
         :return: None
         """
 
@@ -28,6 +33,8 @@ class TestPostStore(TestCase):
 
     def tearDown(self):
         """
+        Drops the test database after each test method runs
+
         This method drops all in-memory tables, hands the session (back) back to the the engine, and closes down the
         engine.
 
@@ -47,7 +54,8 @@ class TestPostStore(TestCase):
 
     def test_create(self):
         """
-        Test record creation
+        Create and store a Post
+
         :return: None
         """
         a = Post(title='title', body='body')
@@ -61,22 +69,25 @@ class TestPostStore(TestCase):
 
         assert isinstance(a.post_id, int), 'post commit post_id is int'
 
-    def create_ten_test_records(self):
+    def create_test_records(self, size=10):
         """
-        Creates ten sample records
-        :return:
+        Helper method to create test records
+
+        :param size: how many test records to create, defaults to 10
+        :return: None
         """
-        for i in range(0, 10):
+        for i in range(0, size):
             self.session.add(Post(title='title {}'.format(i), body='body {}'.format(i)))
 
         self.session.commit()
 
     def test_read(self):
         """
-        Tests reading from the table
+        Test reading Posts from database
+
         :return:
         """
-        self.create_ten_test_records()
+        self.create_test_records()
 
         a = self.session.query(Post).filter(Post.title == 'title 3')
         assert a.count() == 1
@@ -90,9 +101,10 @@ class TestPostStore(TestCase):
     def test_update(self):
         """
         Test updating a record
-        :return:
+
+        :return: None
         """
-        self.create_ten_test_records()
+        self.create_test_records()
 
         q = self.session.query(Post).filter(Post.title == 'foo')
         assert q.first() is None
@@ -113,9 +125,9 @@ class TestPostStore(TestCase):
         """
         Test deleting a record
 
-        :return:
+        :return: None
         """
-        self.create_ten_test_records()
+        self.create_test_records()
 
         a = self.session.query(Post).filter(Post.title == 'title 5')
         a.first() is not None
