@@ -19,6 +19,8 @@ script:
 - docker run -v ${TRAVIS_BUILD_DIR}:/source -e COVERAGE_FILE=/source/.coverage $REPO:$COMMIT
   nosetests --with-coverage --cover-package=blog/ --cover-branches --cover-erase
 after_success:
+- mkdir -p /usr/src
+- ln -s ${TRAVIS_BUILD_DIR} /usr/src/app
 - coveralls
 - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
 - docker tag $REPO:$COMMIT $REPO:$TAG
