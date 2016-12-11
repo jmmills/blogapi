@@ -16,7 +16,7 @@ def list_posts():
 
 
 @hug.post('/post')
-def add_post(title: hug.types.text, body: hug.types.text):
+def add_post(post_title: hug.types.text, post_body=None):
     """Adds a new blog post"""
-    return blog.add(title=title, body=body)
+    return blog.add(title=post_title, body=post_body)
 
