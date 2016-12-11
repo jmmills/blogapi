@@ -13,15 +13,12 @@ env:
   - secure: o8rocyovSkfWcGHz0B0IXNmhhhTsqI48x2CKM1oKtJcJkUfC2nth4D87a32AkguiWsYQ9wPOcNuvKCtkMtUMEo+ral0jzqL+JPNowsfOP7S9DXV7hte/o2rG5uXOOqpM8l1j86RgOXDDNs5zlKZaZMgkY29wAc4cFNulb70Ng9eDmZ3easoQWyH7J5nh6Wesp7EnDyWro9jm9wjkcL5quMR9oQPhXc+OpORhpkRon4aQPFMO0OhNxtJtjp/4gGGI05+4kwYbokRhGAGhTVIExl4cwreML2lINY2s/5IHzjtUjzayRspum2F3NHh8UJl30F9HcVjZuScK9Oeismz5Yls4vDRtuGQRPfiiehRS9pNkhKjocOAhdErma743rCV2po2+Yrm21407HsjxMDU+ukrwN1RKMyLXQjXvAc4V76UMHIimo+QTWORSOkhW5NHeIy7/f7mPHmqZBekfmZZVn9gpG/Eu+SOJEIQtuS1zZHYi9WWHcYpDry0M581WFBnCIYkT8hrqrfRB6htfPFMd+buXjFHPBDjirQXjzn5oTXOHB5y0sMjwSPX8b4Dyt2pfGXhjHcBM6cgUIzj4RsuDKAGINnbpJw9zCmseF+7WPsx9Hm2ezlPOA942lwJJdwAJTuzkDx7H6dXRS8XPx+Vi+5OZ4SDUdfGpKuTxRhd8qiY=
   - secure: hIyJbJtBCDJbG9ZNIuaOlbmk4TCcr49nb6urIglSeRErIL7XL5TktkUL54HzyHqvsPhHNNtXWijzwvHeMFhHVj/JlgG6lf3PZN4Ih1Z96M6nz8Xy8sFhh987U6WrO+bm0p7FjXvbcU9RPEklIGkLYxLMlsbhN4ILxS96KPiF25Ds72pU6sfEekZZOR5/ASww+2VdDRAdlGJdvB2Ty8GSRBtvOKkfeDlP2A0DBeiEqpgp90UJP8RhNzMREIp/9WPStDdWH+TjGhc9cESL5cJddE1UO6u5bSZrvN1s1sJ+wyL6nCR2LkElgtZZXQvTGdHII3FGhRgHXtyAG2DKvJOhWRoVO+AqPU+QQ02JcPC42WCCVDnod1yKLsvw6h/YdkvT8UiiDb/zk7g0/VYlR9a6OGz/IRiHri3lXSx/SxCZaGphOKPxqZIoh+4GsHKM0brXn2IIHS6Koc2PGEiFTicAT5Vj4wAjFYfq5ofRyfleFcTzx6+F66NpFIQuNmpfeEGszGCP62CC30imt//k9cuB44oxXSdHIjqpKbx9wdW4ywrmK6wHCGvjCTLa39eGzYL1EMjmgtyunSXmjBgYHB3H5ll3vXgfmlcGSglPoFZAq8t7dY6aTn9nGjwXieN1tLY9TCngdrwCNUqVr7UzOCIluLgXBAEhyVjJ0+11hkTK43g=
 install:
-- pip install coveralls
 - docker build -t $REPO:$COMMIT .
 script:
 - docker run -v ${TRAVIS_BUILD_DIR}:/source -e COVERAGE_FILE=/source/.coverage $REPO:$COMMIT
   nosetests --with-coverage --cover-package=blog/ --cover-branches --cover-erase
 after_success:
-- mkdir -p /usr/src
-- ln -s ${TRAVIS_BUILD_DIR} /usr/src/app
-- coveralls
+- docker run -v ${TRAVIS_BUILD_DIR}:/source -e COVERAGE_FILE=/source/.coverage $REPO:$COMMIT -e COVERALLS_REPO_TOKEN=${COVERALLS_REPO_TOKEN} sh -c "pip install coveralls && coveralls"
 - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
 - docker tag $REPO:$COMMIT $REPO:$TAG
 - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
