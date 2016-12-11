@@ -13,6 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 ADD blog ./blog
 ADD test ./test
+ADD blog.db ./blog.db
 
 EXPOSE 8000
 
