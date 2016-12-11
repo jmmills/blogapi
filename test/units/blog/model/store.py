@@ -5,10 +5,11 @@ from sqlalchemy.orm import sessionmaker
 
 from blog.model.store import Post, metadata as PostMeta
 
-# Under special cases we may want overwrite what our connection URI is for testing
-# example use case: testing our API against a different RDBMS
+# Under special cases we may want overwrite what our connection URI is for
+# testing example use case: testing our API against a different RDBMS
 BLOGAPI_TEST_ENGINE = getenv('BLOGAPI_TEST_ENGINE', 'sqlite:///:memory:')
-BLOGAPI_LOG_SQL = True if getenv('BLOGAPI_LOG_SQL', 'false').lower() == 'true' else False
+BLOGAPI_LOG_SQL = True if getenv('BLOGAPI_LOG_SQL',
+                                 'false').lower() == 'true' else False
 
 
 class TestPostStore(TestCase):
@@ -19,7 +20,8 @@ class TestPostStore(TestCase):
         """
         Creates a test database before test methods run
 
-        This method initializes an in-memory SQLite database of our Posts() SQLAlchemy model
+        This method initializes an in-memory SQLite database of our Posts()
+        SQLAlchemy model.
 
         :return: None
         """
@@ -35,11 +37,13 @@ class TestPostStore(TestCase):
         """
         Drops the test database after each test method runs
 
-        This method drops all in-memory tables, hands the session (back) back to the the engine, and closes down the
-        engine.
+        This method drops all in-memory tables, hands the session (back) back
+        to the the engine, and closes down the engine.
 
-        This processes is somewhat redundant when testing with an in-memory SQLite database, however if tests are run
-        using a permanent RDBMS, being a good citizen here could save someone the grief of testing race-conditions.
+        This processes is somewhat redundant when testing with an in-memory
+        SQLite database, however if tests are run using a permanent RDBMS,
+        being a good citizen here could save someone the grief of testing
+        race-conditions.
 
         :return: None
         """
@@ -77,7 +81,8 @@ class TestPostStore(TestCase):
         :return: None
         """
         for i in range(0, size):
-            self.session.add(Post(title='title {}'.format(i), body='body {}'.format(i)))
+            post = Post(title='title {}'.format(i), body='body {}'.format(i))
+            self.session.add(post)
 
         self.session.commit()
 
