@@ -30,6 +30,11 @@ class Blog:
 
     @property
     def query(self):
+        """
+        Get a query object
+
+        :return: session query object
+        """
         return self._session.query(Post)
 
     def add(self, title, body):
