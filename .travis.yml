@@ -15,7 +15,7 @@ env:
 install:
 - docker build -t $REPO:$COMMIT .
 script:
-- docker run -v ${TRAVIS_BUILD_DIR}:/source -e COVERAGE_FILE=/source/.coverage $REPO:$COMMIT nosetests --with-coverage --cover-package=blog/ --cover-branches --cover-erase
+- docker run -v ${TRAVIS_BUILD_DIR}:/source -e COVERAGE_FILE=/source/.coverage $REPO:$COMMIT nosetests --with-coverage --cover-package=blog/ --cover-branches --cover-erase test/units/
 after_success:
 - docker run -v ${TRAVIS_BUILD_DIR}:/usr/src/app -e COVERALLS_REPO_TOKEN=${COVERALLS_REPO_TOKEN} $REPO:$COMMIT sh -c "pip install coveralls && coveralls"
 - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
