@@ -73,7 +73,7 @@ class TestPostStore(TestCase):
 
         assert isinstance(a.post_id, int), 'post commit post_id is int'
 
-    def create_test_records(self, size=10):
+    def create_records(self, size=10):
         """
         Helper method to create test records
 
@@ -92,7 +92,7 @@ class TestPostStore(TestCase):
 
         :return:
         """
-        self.create_test_records()
+        self.create_records()
 
         a = self.session.query(Post).filter(Post.title == 'title 3')
         assert a.count() == 1
@@ -109,7 +109,7 @@ class TestPostStore(TestCase):
 
         :return: None
         """
-        self.create_test_records()
+        self.create_records()
 
         q = self.session.query(Post).filter(Post.title == 'foo')
         assert q.first() is None
@@ -132,7 +132,7 @@ class TestPostStore(TestCase):
 
         :return: None
         """
-        self.create_test_records()
+        self.create_records()
 
         a = self.session.query(Post).filter(Post.title == 'title 5')
         a.first() is not None
@@ -151,7 +151,7 @@ class TestPostStore(TestCase):
 
         :return:
         """
-        self.create_test_records()
+        self.create_records()
 
         a = self.session.query(Post).first()
         d = a.to_dict()
